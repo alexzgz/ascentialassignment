@@ -45,8 +45,10 @@ public class ListCustomNumberEntityChecker implements NumberFinder{
         // Ignoring the duplicate keys
 		this.map = list.stream().collect(Collectors.toMap(a -> a.getNumber(), a -> a,   (a1, a2) -> {return a1;}));        
 		
-		if (map.containsKey(new String(valueToFind+"")))
+		if (map.containsKey(new String(valueToFind+""))) {
+			comparator.compare(valueToFind, map.get(valueToFind+""));
 			return true;
+		}
 		else
 			return false;
 	}
